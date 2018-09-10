@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
 
 // Modulos
 import { AppRoutingModule } from './app-routing.module';
@@ -17,30 +16,19 @@ import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { IngresoEgresoComponent } from './ingreso-egreso/ingreso-egreso.component';
-import { EstadisticaComponent } from './ingreso-egreso/estadistica/estadistica.component';
-import { DetalleComponent } from './ingreso-egreso/detalle/detalle.component';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 // Modules
 import { AuthModule } from './auth/auth.module';
-import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    DashboardComponent,
-    IngresoEgresoComponent,
-    EstadisticaComponent,
-    DetalleComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AuthModule,
-    SharedModule,
     AppRoutingModule,
-    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     StoreModule.forRoot(appReducers),
