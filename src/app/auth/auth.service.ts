@@ -21,6 +21,8 @@ export class AuthService {
   private destroy$: Subject<any> = new Subject();
   private userSubscription: Subscription = new Subscription();
 
+  private user: User;
+
   constructor(
     private afAuth: AngularFireAuth,
     private router: Router,
@@ -35,10 +37,11 @@ export class AuthService {
         if (firebaseUser) {
            this.userSubscription = this.afDB.doc(`${firebaseUser.uid}/user`).valueChanges()
             .subscribe((user: any) => {
-              this.store.dispatch( new SetUserAction(new User(user)));
-              console.log(user);
+              this.user = new User(user);
+              this.store.dispatch( new SetUserAction(this.user));
             });
         } else {
+          this.user = null;
           this.userSubscription.unsubscribe();
         }
 
@@ -105,5 +108,9 @@ export class AuthService {
       .catch(error => {
         Swal('Signout error', error.message, 'error');
       });
+  }
+
+  public getUser() {
+    return {...this.user};
   }
 }
