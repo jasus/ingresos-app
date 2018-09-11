@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../app.reducer';
 import { IngresoEgreso } from '../ingreso-egreso.model';
+import * as fromIngresoEgreso from '../ingreso-egreso-reducer';
 
 @Component({
   selector: 'app-detalle',
@@ -12,7 +12,7 @@ export class DetalleComponent implements OnInit {
 
   public items: IngresoEgreso[];
 
-  constructor(private store: Store<AppState>) { }
+  constructor(private store: Store<fromIngresoEgreso.AppState>) { }
 
   ngOnInit() {
     this.store.select('ingresosEgresos')
